@@ -7,8 +7,6 @@
 
 // Execute `starklings hint traits3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 #[derive(Copy, Drop)]
 struct Fish {
     noise: felt252,
@@ -61,7 +59,21 @@ impl AnimalDogImpl of AnimalTrait<Dog> {
 
 // TODO: implement FishTrait for the type Fish
 
+impl FishImpl of FishTrait {
+    fn swim(ref self: Fish) {
+        // self.swim(); // Calling only this would kill this without any explicit error
+        self.distance += 1;
+    }
+}
+
 // TODO: implement DogTrait for the type Dog
+
+impl DogImpl of DogTrait {
+    fn walk(ref self: Dog) {
+        // self.walk();  // Calling only this would kill this without any explicit error
+        self.distance += 1;
+    }
+}
 
 #[test]
 fn test_traits3() {
